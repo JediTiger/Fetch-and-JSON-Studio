@@ -3,23 +3,34 @@ window.addEventListener("load", function() {
 	fetch("https://handlers.education.launchcode.org/static/astronauts.json").then(function(response) {
 		// Access the JSON in the response
 		response.json().then( function(json) {
+			json.sort(compare);
 			console.log(json);
 			const div = document.getElementById('container');
-			for (let i = 0, i < json.length) {
-				div.innerHTML = `
+			for (let i = 0; i < json.length; i++) {
+				console.log("i: " + i);
+				div.innerHTML = div.innerHTML + `
 					<div class="astronaut">
 						 <div class="bio">
-								<h3>${json[i].firstName.value} ${json[i].lastName.value}</h3>
+								<h3>${json[i].firstName} ${json[i].lastName}</h3>
 								<ul>
-									 <li>Hours in space: ${json[i].hoursInSpace.value}</li>
-									 <li>Active: ${json[i].active.value}</li>
-									 <li>Skills: ${json[i].skills.value}</li>
+									 <li>Hours in space: ${json[i].hoursInSpace}</li>
+									 <li>Active: ${json[i].active}</li>
+									 <li>Skills: ${json[i].skills.join(", ")}</li>
 								</ul>
 						 </div>
-						 <img class="avatar" src="${json[i].picture.value}">
+						 <img class="avatar" src="${json[i].picture}">
 					</div>
 				`;
 			}
 		});
 	});
+	function compare(a, b) {
+		if (a.hoursInSpace > b.hoursInSpace) {
+			return -1;
+		}
+		if (a.hoursInSpace < b.hoursInSpace) {
+			return 1;
+		}
+		return 0;
+	}
 });
