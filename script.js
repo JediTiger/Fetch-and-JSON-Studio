@@ -9,7 +9,7 @@ window.addEventListener("load", function() {
 			for (let i = 0; i < json.length; i++) {
 				console.log("i: " + i);
 				if (json[i].active === true) {
-					tag = `<li class="true">Active: ${json[i].active}</li>`;
+					tag = `<li><span id="true">Active: ${json[i].active}</span></li>`;
 				}
 				else {
 					tag = `<li>Active: ${json[i].active}</li>`;
@@ -40,5 +40,5 @@ window.addEventListener("load", function() {
 		return 0;
 	}
 	console.log(json.length);
-	document.body.h1.innerHTML = `Astronauts (count: ${json.length})`;
+	document.body.h1.innerHTML.value = `Astronauts (count: ${json.length})`;
 });
