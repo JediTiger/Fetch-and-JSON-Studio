@@ -6,6 +6,8 @@ window.addEventListener("load", function() {
 			json.sort(compare);
 			console.log(json);
 			const div = document.getElementById('container');
+			const h = document.getElementById('astroCount');
+			astroCount.innerHTML = `Astronauts (count: ${json.length})`;
 			for (let i = 0; i < json.length; i++) {
 				console.log("i: " + i);
 				if (json[i].active === true) {
@@ -40,5 +42,4 @@ window.addEventListener("load", function() {
 		return 0;
 	}
 	console.log(json.length);
-	document.body.h1.innerHTML.value = `Astronauts (count: ${json.length})`;
 });
