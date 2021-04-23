@@ -8,13 +8,19 @@ window.addEventListener("load", function() {
 			const div = document.getElementById('container');
 			for (let i = 0; i < json.length; i++) {
 				console.log("i: " + i);
+				if (json[i].active === true) {
+					tag = `<li class="true">Active: ${json[i].active}</li>`;
+				}
+				else {
+					tag = `<li>Active: ${json[i].active}</li>`;
+				}
 				div.innerHTML = div.innerHTML + `
 					<div class="astronaut">
 						 <div class="bio">
 								<h3>${json[i].firstName} ${json[i].lastName}</h3>
 								<ul>
 									 <li>Hours in space: ${json[i].hoursInSpace}</li>
-									 <li>Active: ${json[i].active}</li>
+									 ${tag}
 									 <li>Skills: ${json[i].skills.join(", ")}</li>
 								</ul>
 						 </div>
@@ -33,4 +39,6 @@ window.addEventListener("load", function() {
 		}
 		return 0;
 	}
+	console.log(json.length);
+	document.body.h1.innerHTML = `Astronauts (count: ${json.length})`;
 });
